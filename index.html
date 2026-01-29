@@ -124,14 +124,15 @@
   })(document,"script");
 
   function openChat(message) {
+  if (window.$chatwoot) {
     window.$chatwoot.toggle('open');
     setTimeout(() => {
-      window.$chatwoot.setConversationCustomAttributes({
-        motivo: message
-      });
       window.$chatwoot.sendMessage(message);
-    }, 500);
+    }, 600);
+  } else {
+    alert("El chat todavía está cargando, intentá de nuevo en unos segundos.");
   }
+}
 </script>
 
 </body>
