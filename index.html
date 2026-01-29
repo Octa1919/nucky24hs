@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nucky24hs</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="brand">Nucky<span>24hs</span></div>
+  <a class="wa-btn" href="https://wa.me/549XXXXXXXXX">WhatsApp</a>
+</header>
+
+<section class="welcome">
+  <h1>Bienvenido, <span id="userName">Usuario</span> 👋</h1>
+  <p>Usuario: <strong id="userId">---</strong></p>
+</section>
+
+<section class="actions">
+  <button onclick="openChat('cargar')">💰 Cargar Saldo</button>
+  <button onclick="openChat('retirar')">🏆 Retirar Fondos</button>
+</section>
+
+<section class="platforms">
+  <button>Celuapuestas</button>
+  <button>Zeus</button>
+  <button>Bet30</button>
+  <button>Bet32</button>
+</section>
+
+<section class="chat-general">
+  <button onclick="openChat()">💬 Atención / Mensajes</button>
+</section>
+
+<!-- CHATWOOT -->
+<script>
+(function(d,t) {
+  var BASE_URL="https://app.chatwoot.com";
+  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=BASE_URL+"/packs/js/sdk.js";
+  g.defer=true;
+  s.parentNode.insertBefore(g,s);
+  g.onload=function(){
+    window.chatwootSDK.run({
+      websiteToken: 'TU_TOKEN',
+      baseUrl: BASE_URL
+    })
+  }
+})(document,"script");
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
