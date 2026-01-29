@@ -1,57 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nucky24hs</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .wa-btn {
+      background: #22c55e;
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .welcome {
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .platforms {
+      margin: 24px 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .chat-main {
+      margin: 24px 16px;
+      padding: 16px;
+      background: #2563eb;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="top-bar">
-  <div class="brand">Nucky<span>24hs</span></div>
-  <a class="wa-btn" href="https://wa.me/549XXXXXXXXX">WhatsApp</a>
+<header>
+  <h1>Nucky24hs</h1>
+  <a class="wa-btn" href="https://wa.me/549XXXXXXXXXX" target="_blank">
+    WhatsApp
+  </a>
 </header>
 
-<section class="welcome">
-  <h1>Bienvenido, <span id="userName">Usuario</span> 👋</h1>
-  <p>Usuario: <strong id="userId">---</strong></p>
-</section>
+<div class="welcome">
+  <p>Bienvenido, <strong>usuario</strong></p>
+</div>
 
-<section class="actions">
-  <button onclick="openChat('cargar')">💰 Cargar Saldo</button>
-  <button onclick="openChat('retirar')">🏆 Retirar Fondos</button>
-</section>
+<div class="grid">
+  <div class="card" onclick="openChat('Hola, quiero cargar saldo')">
+    💰 Cargar saldo
+  </div>
+  <div class="card" onclick="openChat('Hola, quiero retirar fondos')">
+    🏆 Retirar fondos
+  </div>
+</div>
 
-<section class="platforms">
-  <button>Celuapuestas</button>
-  <button>Zeus</button>
-  <button>Bet30</button>
-  <button>Bet32</button>
-</section>
+<div class="platforms">
+  <div class="card">Celuapuestas</div>
+  <div class="card">Zeus</div>
+  <div class="card">Bet30</div>
+  <div class="card">Bet32</div>
+</div>
 
-<section class="chat-general">
-  <button onclick="openChat()">💬 Atención / Mensajes</button>
-</section>
+<div class="chat-main" onclick="openChat('Hola, necesito ayuda')">
+  💬 Chat con soporte
+</div>
 
 <!-- CHATWOOT -->
 <script>
-(function(d,t) {
-  var BASE_URL="https://app.chatwoot.com";
-  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=BASE_URL+"/packs/js/sdk.js";
-  g.defer=true;
-  s.parentNode.insertBefore(g,s);
-  g.onload=function(){
-    window.chatwootSDK.run({
-      websiteToken: 'TU_TOKEN',
-      baseUrl: BASE_URL
-    })
+  (function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t), s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async=true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'VKSVdtNfgr9Mj8VQcKjsH5fu',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+
+  function openChat(message) {
+    window.$chatwoot.toggle('open');
+    setTimeout(() => {
+      window.$chatwoot.setConversationCustomAttributes({
+        motivo: message
+      });
+      window.$chatwoot.sendMessage(message);
+    }, 500);
   }
-})(document,"script");
 </script>
 
-<script src="app.js"></script>
 </body>
 </html>
