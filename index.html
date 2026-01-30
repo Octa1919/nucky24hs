@@ -1,139 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nucky24hs</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
-      color: #fff;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px;
-    }
-
-    header h1 {
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    .wa-btn {
-      background: #22c55e;
-      color: #000;
-      padding: 10px 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .welcome {
-      padding: 0 16px;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      padding: 0 16px;
-    }
-
-    .card {
-      background: #1e293b;
-      border-radius: 14px;
-      padding: 20px;
-      text-align: center;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .platforms {
-      margin: 24px 16px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .chat-main {
-      margin: 24px 16px;
-      padding: 16px;
-      background: #2563eb;
-      border-radius: 14px;
-      text-align: center;
-      font-weight: 700;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nucky24hs</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.PNG">
+    <meta name="theme-color" content="#0a0e1a">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="app-container">
+        <header>
+            <h1 class="logo">Nucky<span>24hs</span></h1>
+            <div class="header-icons">
+                <a href="https://api.whatsapp.com/send?phone=5493517622725" target="_blank" rel="noopener noreferrer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
+                </a>
+            </div>
+        </header>
 
-<header>
-  <h1>Nucky24hs</h1>
-  <a class="wa-btn" href="https://wa.me/549XXXXXXXXXX" target="_blank">
-    WhatsApp
-  </a>
-</header>
+        <section class="welcome-section">
+            <h2 id="welcome-text">Bienvenido 👋</h2>
+            <p class="user-id" id="user-id-text">Usuario: invitado</p>
+        </section>
 
-<div class="welcome">
-  <p>Bienvenido, <strong>usuario</strong></p>
-</div>
+        <main class="grid-container">
+            <button class="btn btn-green main-action" onclick="contactar('Cargar Saldo')">
+                <span class="icon">💰</span>
+                Cargar Saldo
+            </button>
+            <button class="btn btn-blue main-action" onclick="contactar('Retirar Fondos')">
+                <span class="icon">🏆</span>
+                Retirar Fondos
+            </button>
+            
+            <button onclick="abrirJuego('https://celuapuestas.app')" class="btn btn-dark">
+                <span class="icon">🎰</span> Celuapuestas
+            </button>
+            <button onclick="abrirJuego('https://casinozeus.store')" class="btn btn-dark">
+                <span class="icon">🎲</span> Zeus
+            </button>
+            <button onclick="abrirJuego('https://www.bet30.sbs')" class="btn btn-dark">
+                <span class="icon">🃏</span> Bet30
+            </button>
+            <button onclick="abrirJuego('https://bet32.online')" class="btn btn-dark">
+                <span class="icon">🎰</span> Bet32
+            </button>
+        </main>
 
-<div class="grid">
-  <div class="card" onclick="openChat('Hola, quiero cargar saldo')">
-    💰 Cargar saldo
-  </div>
-  <div class="card" onclick="openChat('Hola, quiero retirar fondos')">
-    🏆 Retirar fondos
-  </div>
-</div>
+        <button class="btn btn-support" onclick="contactar('Atención')">
+            💬 Atención / Mensajes
+        </button>
+    </div>
 
-<div class="platforms">
-  <div class="card">Celuapuestas</div>
-  <div class="card">Zeus</div>
-  <div class="card">Bet30</div>
-  <div class="card">Bet32</div>
-</div>
+    <script>
+      // 1. GESTIÓN DE USUARIO
+      const urlParams = new URLSearchParams(window.location.search);
+      let nombreUsuario = urlParams.get('user');
+      if (nombreUsuario) {
+          localStorage.setItem('nucky_user', nombreUsuario);
+      } else {
+          nombreUsuario = localStorage.getItem('nucky_user') || "Usuario Nuevo";
+      }
 
-<div class="chat-main" onclick="openChat('Hola, necesito ayuda')">
-  💬 Chat con soporte
-</div>
+      document.getElementById('welcome-text').innerText = `Bienvenido, ${nombreUsuario} 👋`;
+      document.getElementById('user-id-text').innerText = `Usuario: ${nombreUsuario}`;
 
-<!-- CHATWOOT -->
-<script>
-  (function(d,t) {
-    var BASE_URL="https://app.chatwoot.com";
-    var g=d.createElement(t), s=d.getElementsByTagName(t)[0];
-    g.src=BASE_URL+"/packs/js/sdk.js";
-    g.async=true;
-    s.parentNode.insertBefore(g,s);
-    g.onload=function(){
-      window.chatwootSDK.run({
-        websiteToken: 'VKSVdtNfgr9Mj8VQcKjsH5fu',
-        baseUrl: BASE_URL
-      })
-    }
-  })(document,"script");
+      // 2. FUNCIÓN PARA FORZAR APERTURA EXTERNA EN IPHONE
+      function abrirJuego(url) {
+          // Creamos un elemento temporal de enlace
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          // Esto es lo que a veces engaña al iPhone para que abra Safari
+          a.click();
+      }
 
-  function openChat(message) {
-  if (window.$chatwoot) {
-    window.$chatwoot.toggle('open');
-    setTimeout(() => {
-      window.$chatwoot.sendMessage(message);
-    }, 600);
-  } else {
-    alert("El chat todavía está cargando, intentá de nuevo en unos segundos.");
-  }
-}
-</script>
+      // 3. CONFIGURACIÓN DE CHATWOOT
+      (function(d,t) {
+        var BASE_URL="https://app.chatwoot.com";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: 'VKSvdtNfgr9Mj8VQcKjsH5fu',
+            baseUrl: BASE_URL,
+            locale: 'es'
+          })
+        }
+      })(document,"script");
 
+      window.addEventListener("chatwoot:ready", function () {
+        window.$chatwoot.setUser(nombreUsuario, {
+          name: nombreUsuario,
+          identifier: nombreUsuario.toLowerCase().replace(/\s+/g, '_')
+        });
+      });
+
+      function contactar(tipo) {
+        if (window.$chatwoot) {
+          window.$chatwoot.toggle("open");
+          setTimeout(() => {
+            let msg = (tipo === 'Cargar Saldo') ? `Hola! Soy ${nombreUsuario}, quiero CARGAR saldo.` : `Hola! Soy ${nombreUsuario}, deseo RETIRAR fondos.`;
+            window.$chatwoot.sendMessage(msg);
+          }, 800);
+        } else {
+            window.open(`https://api.whatsapp.com/send?phone=5493517622725&text=Hola! Soy ${nombreUsuario}, quiero ${tipo}`, '_blank');
+        }
+      }
+    </script>
 </body>
 </html>
