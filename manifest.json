@@ -1,8 +1,28 @@
 {
   "name": "Nucky24hs",
-  "short_name": "Nucky24hs",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#0b1020",
-  "theme_color": "#0b1020"
+  "short_name": "Nucky",
+  "description": "Plataforma de juegos y soporte Nucky24hs",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "minimal-ui",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [
+    {
+      "src": "logo.PNG",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.PNG",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
